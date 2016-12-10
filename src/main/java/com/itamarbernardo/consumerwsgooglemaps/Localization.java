@@ -13,45 +13,24 @@ import java.util.List;
  * @author ANAFLAVIA
  */
 public class Localization {
-    
-    private List<String> enderecoDestino;
-    private List<String> enderecoAtual;
-    private List<Rows> rows;
+
+    private String destination_addresses[][] = new String[3][3];
+    private String origin_addresses;
+    private Rows rows[][] = new Rows[10][10];
     private String status;
 
-    public Localization(List<Rows> rows) {
-        this.rows = new ArrayList<Rows>();
-        this.enderecoAtual = new ArrayList<>();
-        this.enderecoDestino = new ArrayList<>();
-        this.rows = rows;
+    public Localization() {
+        
     }
 
-    public List<String> getEnderecoDestino() {
-        return enderecoDestino;
+    public String getOrigin_addresses() {
+        return origin_addresses;
     }
 
-    public void setEnderecoDestino(List<String> enderecoDestino) {
-        this.enderecoDestino = enderecoDestino;
+    public void setOrigin_addresses(String origin_addresses) {
+        this.origin_addresses = origin_addresses;
     }
 
-    public List<String> getEnderecoAtual() {
-        return enderecoAtual;
-    }
-
-    public void setEnderecoAtual(List<String> enderecoAtual) {
-        this.enderecoAtual = enderecoAtual;
-    }
-
-    public List<Rows> getRows() {
-        return rows;
-    }
-
-    public void setRows(List<Rows> rows) {
-        this.rows = rows;
-    }
-    
-    
-    
     public String getStatus() {
         return status;
     }
@@ -59,7 +38,13 @@ public class Localization {
     public void setStatus(String status) {
         this.status = status;
     }
-    
-    
-    
+
+    public String[][] getDestination_addresses() {
+        return destination_addresses;
+    }
+
+    public void setDestination_addresses(String[][] destination_addresses) {
+        this.destination_addresses = destination_addresses;
+    }
+
 }

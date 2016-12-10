@@ -11,21 +11,19 @@ package com.itamarbernardo.consumerwsgooglemaps;
  */
 class Rows {
     
-    private Elementos elementos;
+    private Elements elements[] = new Elements[10];
 
-    public Rows(Elementos elementos) {
-        this.elementos = elementos;
-    }
-    
-    public Elementos getElementos() {
-        return elementos;
-    }
-    
-    public void setElementos(Elementos elementos) {
-        this.elementos = elementos;
+    public Rows() {
+      
     }
 
-    
+    public Elements[] getElements() {
+        return elements;
+    }
+
+    public void setElements(Elements[] elements) {
+        this.elements = elements;
+    }
     
     
     

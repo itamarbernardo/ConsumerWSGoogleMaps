@@ -22,30 +22,23 @@ public class HttpExemplo {
 
         HttpExemplo http = new HttpExemplo();
         String url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=Seattle&destinations=San+Francisco&key=AIzaSyDxSPaFPYw4VHoODgbDcoRWjj68zeUkEu8";
-//        String url = "http://localhost:8084/VideoAulaWebServices/webresources/aulaws/usuario/get";
+        String urllocal = "http://192.168.0.104:8084/VideoAulaWebServices/webresources/aulaws/usuario/get";
+
+        String my = "http://192.168.0.104:8084/TestHome/webresources//sensor?sensorId==1";
         System.out.println("Testing 1 - Send Http GET request");
         String json = http.sendGet(url);
 
-//        System.out.println(json);
+        System.out.println(json);
 
         Gson g = new Gson();
-        Distancia distancia = new Distancia();
-        Duracao duracao = new Duracao();
-        Elementos elementos = new Elementos(distancia, duracao);
-        List<Rows> rows = new ArrayList<>();
-        Localization l = new Localization(rows);
-//        Usuario u = new Usuario();
-        java.lang.reflect.Type localiza = new TypeToken<Localization>(){}.getType();
-//       java.lang.reflect.Type typeUsuario = new TypeToken<Usuario>() {
+        Localization l = new Localization();
+        java.lang.reflect.Type localiza = new TypeToken<Localization>() {}.getType();
+        
         l = g.fromJson(json, localiza);
-//        u = g.fromJson(json, typeUsuario);
-       System.out.println("Status :" + l.getStatus());
-       //System.out.println("Endereço :" + l.getEnderecoAtual().toString());
-       System.out.println("Rows :" + l.getRows().toString());
-       
-       
-//        System.out.println("Usuario:" + u.getLogin());
+        System.out.println("Status :" + l.getStatus());
+        System.out.println("Destination :" + l.getDestination_addresses());
 
+//        System.out.println("Usuario:" + u.getLogin());
     }
 
     // HTTP GET request

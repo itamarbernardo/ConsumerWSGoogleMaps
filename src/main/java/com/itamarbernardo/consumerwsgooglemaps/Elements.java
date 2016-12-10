@@ -9,15 +9,24 @@ package com.itamarbernardo.consumerwsgooglemaps;
  *
  * @author ANAFLAVIA
  */
-class Elementos {
+class Elements {
 
+    private Distance distance;
+    private Duration duration;
     private String status;
-    private Duracao duracao;
-    private Distancia distance;
     
-    public Elementos(Distancia distance, Duracao duracao) {
+   
+    
+    public Elements() {
+        
+    }
+
+    public Distance getDistance() {
+        return distance;
+    }
+
+    public void setDistance(Distance distance) {
         this.distance = distance;
-        this.duracao = duracao;
     }
 
     public String getStatus() {
@@ -28,20 +37,14 @@ class Elementos {
         this.status = status;
     }
 
-    public Distancia getDistance() {
-        return distance;
+    public Duration getDuration() {
+        return duration;
     }
 
-    public void setDistance(Distancia distance) {
-        this.distance = distance;
+    public void setDuration(Duration duration) {
+        this.duration = duration;
     }
 
-    public Duracao getDuracao() {
-        return duracao;
-    }
-
-    public void setDuracao(Duracao duracao) {
-        this.duracao = duracao;
-    }
+    
 
 }
