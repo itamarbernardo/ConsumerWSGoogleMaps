@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -21,10 +22,14 @@ public class HttpExemplo {
     public static void main(String[] args) throws Exception {
 
         HttpExemplo http = new HttpExemplo();
-        String url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=Seattle&destinations=San+Francisco&key=AIzaSyDxSPaFPYw4VHoODgbDcoRWjj68zeUkEu8";
-        String urllocal = "http://192.168.0.104:8084/VideoAulaWebServices/webresources/aulaws/usuario/get";
-
-        String my = "http://192.168.0.104:8084/TestHome/webresources//sensor?sensorId==1";
+        String destino = "Garanhuns+PE";
+        String origem = "BomConselho+PE";
+        String url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + origem +"&destinations=" + destino + "&key=AIzaSyDxSPaFPYw4VHoODgbDcoRWjj68zeUkEu8";
+        
+        
+        //String urllocal = "http://192.168.0.104:8084/VideoAulaWebServices/webresources/aulaws/usuario/get";
+        //String my = "http://192.168.0.104:8084/TestHome/webresources//sensor?sensorId==1";
+        
         System.out.println("Testing 1 - Send Http GET request");
         String json = http.sendGet(url);
 
@@ -32,13 +37,13 @@ public class HttpExemplo {
 
         Gson g = new Gson();
         Localization l = new Localization();
-        java.lang.reflect.Type localiza = new TypeToken<Localization>() {}.getType();
+        Type modelo = new TypeToken<Localization>() {}.getType();
         
-        l = g.fromJson(json, localiza);
+        l = g.fromJson(json, modelo);
         System.out.println("Status :" + l.getStatus());
         System.out.println("Destination :" + l.getDestination_addresses());
 
-//        System.out.println("Usuario:" + u.getLogin());
+
     }
 
     // HTTP GET request
