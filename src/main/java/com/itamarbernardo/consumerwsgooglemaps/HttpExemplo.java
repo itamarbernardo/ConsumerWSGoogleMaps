@@ -14,17 +14,19 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class HttpExemplo {
 
    
     public static void main(String[] args) throws Exception {
 
-        Acesso http = new Acesso();
-        String destino = "Garanhuns,PE";
-        String origem = "BomConselho,PE";
+        String origem = JOptionPane.showInputDialog("Digite a origem: ");
+        String destino = JOptionPane.showInputDialog("Digite o destino: ");
+        
         String url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + origem +"&destinations=" + destino + "&key=AIzaSyDxSPaFPYw4VHoODgbDcoRWjj68zeUkEu8";
         
+        Acesso http = new Acesso();
         String json = http.sendGet(url);
 
         Gson g = new Gson();
@@ -32,11 +34,9 @@ public class HttpExemplo {
         Type modelo = new TypeToken<Localization>() {}.getType();
         
         l = g.fromJson(json, modelo);
-        System.out.println("Status: " + l.getStatus());
-        System.out.println("Destino: " + l.getDestination_addresses()[0]);
-        System.out.println("Origem: " + l.getOrigin_addresses()[0]);
-        System.out.println("Distância: " + l.getRows()[0].getElements()[0].getDistance().getText());
-        System.out.println("Duração: " + l.getRows()[0].getElements()[0].getDuration().getText());
+        JOptionPane.showMessageDialog(null, "Resultados: \nOrigem: " + l.getOrigin_addresses()[0]
+                + "\nDestino: " + l.getDestination_addresses()[0] + "\nDistância: " + l.getRows()[0].getElements()[0].getDistance().getText()
+                + "\nDuração da viagem: " + l.getRows()[0].getElements()[0].getDuration().getText());
 
 
     }
