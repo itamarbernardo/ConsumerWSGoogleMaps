@@ -14,12 +14,13 @@ import java.util.List;
  */
 public class Localization {
 
-    private String destination_addresses[] = new String[1];
-    private String origin_addresses[] = new String[2];
-    private Rows rows[] = new Rows[3];
+    private String[] destination_addresses;
+    private String[] origin_addresses;
+    private Rows[] rows;
     private String status;
 
     public Localization() {
+        
     }
 
     public String[] getOrigin_addresses() {

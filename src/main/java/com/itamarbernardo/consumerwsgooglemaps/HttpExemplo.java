@@ -17,64 +17,27 @@ import java.util.List;
 
 public class HttpExemplo {
 
-    private final String USER_AGENT = "Mozilla/5.0";
-
+   
     public static void main(String[] args) throws Exception {
 
-        HttpExemplo http = new HttpExemplo();
-        String destino = "Garanhuns+PE";
-        String origem = "BomConselho+PE";
+        Acesso http = new Acesso();
+        String destino = "Garanhuns,PE";
+        String origem = "BomConselho,PE";
         String url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + origem +"&destinations=" + destino + "&key=AIzaSyDxSPaFPYw4VHoODgbDcoRWjj68zeUkEu8";
         
-        
-        //String urllocal = "http://192.168.0.104:8084/VideoAulaWebServices/webresources/aulaws/usuario/get";
-        //String my = "http://192.168.0.104:8084/TestHome/webresources//sensor?sensorId==1";
-        
-        System.out.println("Testing 1 - Send Http GET request");
         String json = http.sendGet(url);
-
-        System.out.println(json);
 
         Gson g = new Gson();
         Localization l = new Localization();
         Type modelo = new TypeToken<Localization>() {}.getType();
         
         l = g.fromJson(json, modelo);
-        System.out.println("Status :" + l.getStatus());
-        System.out.println("Destination :" + l.getDestination_addresses());
+        System.out.println("Status: " + l.getStatus());
+        System.out.println("Destino: " + l.getDestination_addresses()[0]);
+        System.out.println("Origem: " + l.getOrigin_addresses()[0]);
+        System.out.println("Distância: " + l.getRows()[0].getElements()[0].getDistance().getText());
+        System.out.println("Duração: " + l.getRows()[0].getElements()[0].getDuration().getText());
 
-
-    }
-
-    // HTTP GET request
-    private String sendGet(String url) throws Exception {
-
-        //String url = "http://www.nanonull.com/TimeService/TimeService.asmx?op=getUTCTime";
-        URL obj = new URL(url);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-
-        // optional default is GET
-        con.setRequestMethod("GET");
-
-        //add request header
-        con.setRequestProperty("User-Agent", USER_AGENT);
-
-        int responseCode = con.getResponseCode();
-        System.out.println("\nSending 'GET' request to URL : " + url);
-        System.out.println("Response Code : " + responseCode);
-
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuffer response = new StringBuffer();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-        in.close();
-
-        //print result
-        return response.toString();
 
     }
 

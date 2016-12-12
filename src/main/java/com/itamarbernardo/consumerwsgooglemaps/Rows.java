@@ -11,7 +11,7 @@ package com.itamarbernardo.consumerwsgooglemaps;
  */
 class Rows {
     
-    private Elements elements[] = new Elements[10];
+    private Elements[] elements;
 
     public Rows() {
       
